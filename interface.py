@@ -15,7 +15,6 @@ class interface:
 
         window = sg.Window('Calculadora',layout=layout_login, finalize = True)
         
-        
         while True:
             event, values = window.read()    
             if event == sg.WIN_CLOSED:
