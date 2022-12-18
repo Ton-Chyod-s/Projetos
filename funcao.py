@@ -1,7 +1,26 @@
-#inicio
-num1 = 2
-num2 = 4
-usuario = str(num1 / num2)
-conta = eval(usuario)
-print(f'o resultado é:\t{conta}')
+class calc:
+	def __init__(self, a, b):
+		self.a = a 
+		self.b = b
+		
+	def soma(self):
+		c = self.a + self.b
+		return print(c)
+	
+	def sub(self):
+		c = self.a - self.b
+		return print(c)
+	
+	def mult(self):
+		c = self.a * self.b
+		return print(c)
+ 	
+	def div(self):
+		c = self.a / self.b
+		return print(c)
 
+
+if __name__ == '__main__':
+		num = calc(5,2)
+		num.div()
+		
