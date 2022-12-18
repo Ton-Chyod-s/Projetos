@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-import  funcao 
+import  funcao as calc
 
 class interface:
     def __init__(self):
