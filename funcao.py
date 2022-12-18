@@ -16,7 +16,7 @@ class interface:
             [sg.Btn('7',size=(2,1)),sg.Btn('8',size=(2,1)),sg.Btn('9',size=(2,1)),sg.Btn('/',size=(2,1))],
             [sg.Btn('4',size=(2,1)),sg.Btn('5',size=(2,1)),sg.Btn('6',size=(2,1)),sg.Btn('x',size=(2,1))],
             [sg.Btn('1',size=(2,1)),sg.Btn('2',size=(2,1)),sg.Btn('3',size=(2,1)),sg.Btn('-',size=(2,1))],
-            [sg.Btn('+/-',size=(2,1)),sg.Btn('0',size=(2,1)),sg.Btn(',',size=(2,1)),sg.Btn('+',size=(2,1))],
+            [sg.Btn(',',size=(2,1)),sg.Btn('0',size=(2,1)),sg.Btn('=',size=(2,1)),sg.Btn('+',size=(2,1))],
             ]
 
         window = sg.Window('Calculadora',layout=layout_login, finalize = True)
