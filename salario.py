@@ -1,6 +1,6 @@
 
 def salario(arg):
-	num = arg
+	num = int(arg)
 
 	porcentagem = {
 	'Despesas': 50, #50% do salario no mês seram para as despesas
@@ -13,4 +13,5 @@ def salario(arg):
 		pct = porcentagem[lin]/100
 		res = num * pct
 		print(lin,':',res)
-		
+	
+	print('------------------------------------------')
