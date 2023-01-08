@@ -8,11 +8,6 @@ class interface:
         layout_login = [
             [sg.Output(size=(28,2))],
             [sg.Text('Input\t'),sg.Input(size=(15,1),key='calculo'),sg.Btn('OK')],
-            [sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1))],
-            [sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1))],
-            [sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1))],
-            [sg.Btn('',size=(2,1)),sg.Btn('',size=(2,1))],
-            
             ]
 
         window = sg.Window('Calculadora',layout=layout_login, finalize = True)
