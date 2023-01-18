@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 import PySimpleGUI as sg
 
+
 class bot:
     def __init__(self):
         self.contato = ['+5567991799956']
@@ -24,19 +25,52 @@ class bot:
             time.sleep(5)
             keyboard.press_and_release('ctrl + w')
 
-sg.theme('DarkAmber')
+class aplicativo:
+    def __init__(self):
+        sg.theme('Reddit')
+        menu_def = ['&Arquivo', ['&Contato', '&Mensagem', '&Imagem']],
 
-layout = [  [sg.Text('Some text on Row 1')],
-            [sg.Text('Enter something on Row 2'), sg.InputText()],
-            [sg.Button('Ok'), sg.Button('Cancel')] ]
+        layout = [  
+            [sg.Menu(menu_def)],
+            [sg.Text(size=(16,5))],
+            [sg.Button('Enviar'), sg.Button('Sair')] 
+            ]
 
-# Create the Window
-window = sg.Window('Window Title', layout)
-# Event Loop to process "events" and get the "values" of the inputs
-while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
-        break
-    print('You entered ', values[0])
+        # Create the Window
+        aplicativo_window = sg.Window('Bot Whatsapp', layout, keep_on_top=True,)
 
-window.close()
+        def contato():
+            layout = [  [sg.Text('Contato'), sg.Input(size=(16,1))],
+                    [sg.Button('Ok'), sg.Button('Voltar')] ]
+
+            # Create the Window
+            window = sg.Window('Bot Whatsapp', layout)
+
+            # Event Loop to process "events" and get the "values" of the inputs
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
+                    break
+
+                if event == 'Voltar':
+                    window.close()
+                    aplicativo()
+                
+            window.close()
+            
+
+        # Event Loop to process "events" and get the "values" of the inputs
+        while True:
+            event,values = aplicativo_window.read()
+            if event == sg.WIN_CLOSED or event == 'Sair': # if user closes window or clicks cancel
+                break
+
+            if event =='Contato':
+                aplicativo_window.close()
+                contato()
+
+        aplicativo_window.close()
+
+if __name__ == '__main__':
+    aplicativo()
+    
