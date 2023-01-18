@@ -4,7 +4,15 @@ import time
 from datetime import datetime
 import PySimpleGUI as sg
 import json
+import os
 
+def endereco(procurar = True):
+    if procurar:
+        sg.theme('Reddit')
+        local = sg.popup_get_folder(r'Selecione o caminho dos Arquivos',' ',r'C:\Users\klayton.dias\Desktop')
+        caminho = os.chdir(local)
+        aplicativo()
+        
 class bot:
     def __init__(self):
         self.contato = ['+5567991799956']
@@ -41,7 +49,8 @@ class aplicativo:
 
         def contato():
             layout = [
-                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
+                [sg.Text('Contato')],
+                [sg.Multiline(size=(16,5),key='numero')],
                 [sg.Button('Ok'), sg.Button('Voltar')] ]
 
             # Create the Window
@@ -59,7 +68,7 @@ class aplicativo:
 
                 if event == 'Ok':
                     dados = {
-                            "Contato": values['numero']
+                            "Contato_1": '+55' + values['numero']
                         }
                     with open("contatos.json", 'w') as file:
                         json.dump(dados, file, indent=4)
@@ -99,37 +108,6 @@ class aplicativo:
 
             window.close()
 
-        def Imagem():
-            layout = [
-                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
-                [sg.Button('Ok'), sg.Button('Voltar')] ]
-
-            # Create the Window
-            window = sg.Window('Bot Whatsapp', layout)
-
-            # Event Loop to process "events" and get the "values" of the inputs
-            while True:
-                event, values = window.read()
-                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
-                    break
-
-                if event == 'Voltar':
-                    window.close()
-                    aplicativo()
-
-                if event == 'Ok':
-                    dados = {
-                            "Contato": values['numero']
-                        }
-                    with open("contatos.json", 'w') as file:
-                        json.dump(dados, file, indent=4)
-
-                    window.close()
-                    aplicativo()
-
-            window.close()
-
-
         # Event Loop to process "events" and get the "values" of the inputs
         while True:
             event,values = aplicativo_window.read()
@@ -139,6 +117,10 @@ class aplicativo:
             if event =='Contato':
                 aplicativo_window.close()
                 contato()
+
+            if event == 'Imagem' :
+                aplicativo_window.close()
+                endereco()
 
         aplicativo_window.close()
 
