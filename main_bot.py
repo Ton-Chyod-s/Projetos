@@ -10,7 +10,10 @@ def endereco(procurar = True):
     if procurar:
         sg.theme('Reddit')
         local = sg.popup_get_folder(r'Selecione o caminho dos Arquivos',' ',r'C:\Users\klayton.dias\Desktop')
-        caminho = os.chdir(local)
+        try:
+            caminho = os.chdir(local)
+        except:
+            pass
         aplicativo()
         
 class bot:
@@ -41,7 +44,7 @@ class aplicativo:
         layout = [  
             [sg.Menu(menu_def)],
             [sg.Text(size=(16,5))],
-            [sg.Button('Enviar'), sg.Button('Sair')] 
+            [sg.Button('Enviar'), sg.Button('Sair'), sg.Button('Test')] 
             ]
 
         # Create the Window
@@ -80,7 +83,8 @@ class aplicativo:
             
         def mensagem():
             layout = [
-                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
+                [sg.Text('Mensagem')],
+                [sg.Multiline(size=(16,5),key='mensagem')],
                 [sg.Button('Ok'), sg.Button('Voltar')] ]
 
             # Create the Window
@@ -98,9 +102,9 @@ class aplicativo:
 
                 if event == 'Ok':
                     dados = {
-                            "Contato": values['numero']
+                            "msg": values['mensagem']
                         }
-                    with open("contatos.json", 'w') as file:
+                    with open("credenciais.json", 'w') as file:
                         json.dump(dados, file, indent=4)
 
                     window.close()
@@ -121,6 +125,19 @@ class aplicativo:
             if event == 'Imagem' :
                 aplicativo_window.close()
                 endereco()
+
+            if event == 'Mensagem' :
+                aplicativo_window.close()
+                mensagem()
+
+            if event == 'Test':
+                with open("credenciais.json", encoding='utf-8') as meu_json:
+                        dado = json.load(meu_json)
+                info = dado['email']   
+                tr = dado['login']
+                senha = dado['senha']
+
+                print(info, tr, senha)
 
         aplicativo_window.close()
 
