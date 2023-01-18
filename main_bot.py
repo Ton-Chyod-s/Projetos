@@ -3,7 +3,7 @@ import keyboard
 import time
 from datetime import datetime
 import PySimpleGUI as sg
-
+import json
 
 class bot:
     def __init__(self):
@@ -40,8 +40,9 @@ class aplicativo:
         aplicativo_window = sg.Window('Bot Whatsapp', layout, keep_on_top=True,)
 
         def contato():
-            layout = [  [sg.Text('Contato'), sg.Input(size=(16,1))],
-                    [sg.Button('Ok'), sg.Button('Voltar')] ]
+            layout = [
+                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
+                [sg.Button('Ok'), sg.Button('Voltar')] ]
 
             # Create the Window
             window = sg.Window('Bot Whatsapp', layout)
@@ -55,9 +56,79 @@ class aplicativo:
                 if event == 'Voltar':
                     window.close()
                     aplicativo()
-                
+
+                if event == 'Ok':
+                    dados = {
+                            "Contato": values['numero']
+                        }
+                    with open("contatos.json", 'w') as file:
+                        json.dump(dados, file, indent=4)
+
+                    window.close()
+                    aplicativo()
+
             window.close()
             
+        def mensagem():
+            layout = [
+                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
+                [sg.Button('Ok'), sg.Button('Voltar')] ]
+
+            # Create the Window
+            window = sg.Window('Bot Whatsapp', layout)
+
+            # Event Loop to process "events" and get the "values" of the inputs
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
+                    break
+
+                if event == 'Voltar':
+                    window.close()
+                    aplicativo()
+
+                if event == 'Ok':
+                    dados = {
+                            "Contato": values['numero']
+                        }
+                    with open("contatos.json", 'w') as file:
+                        json.dump(dados, file, indent=4)
+
+                    window.close()
+                    aplicativo()
+
+            window.close()
+
+        def Imagem():
+            layout = [
+                [sg.Text('Contato'), sg.Input(size=(16,1),key='numero')],
+                [sg.Button('Ok'), sg.Button('Voltar')] ]
+
+            # Create the Window
+            window = sg.Window('Bot Whatsapp', layout)
+
+            # Event Loop to process "events" and get the "values" of the inputs
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
+                    break
+
+                if event == 'Voltar':
+                    window.close()
+                    aplicativo()
+
+                if event == 'Ok':
+                    dados = {
+                            "Contato": values['numero']
+                        }
+                    with open("contatos.json", 'w') as file:
+                        json.dump(dados, file, indent=4)
+
+                    window.close()
+                    aplicativo()
+
+            window.close()
+
 
         # Event Loop to process "events" and get the "values" of the inputs
         while True:
