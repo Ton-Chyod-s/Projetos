@@ -133,7 +133,7 @@ class aplicativo:
             if event == 'Test':
                 with open("credenciais.json", encoding='utf-8') as meu_json:
                         dado = json.load(meu_json)
-                info = dado['mensagem']   
+                info = dado['msg']   
                 
 
                 print(info)
