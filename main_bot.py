@@ -30,11 +30,20 @@ class bot:
                 keyboard.press_and_release('ctrl + w')
 
         def mensagem_texto(self):
-            # Send a WhatsApp Message to a Contact at 1:30 PM
-            pywhatkit.sendwhatmsg(self.contato[0], "um teste ae", datetime.now().hour, datetime.now().minute + 1)
-            del self.contato[0]
-            time.sleep(5)
-            keyboard.press_and_release('ctrl + w')
+            while len(self.contato) >= 1:
+                # Send a WhatsApp Message to a Contact at 1:30 PM
+                pywhatkit.sendwhatmsg(self.contato[0], "um teste ae", datetime.now().hour, datetime.now().minute + 1)
+                del self.contato[0]
+                time.sleep(5)
+                keyboard.press_and_release('ctrl + w')
+
+        def mensagem_grupo(self):
+            while len(self.contato) >= 1:
+                # Send a WhatsApp Message to a Contact at 1:30 PM
+                pywhatkit.sendwhatmsg_to_group(self.contato[0], "um teste ae", datetime.now().hour, datetime.now().minute + 1)
+                del self.contato[0]
+                time.sleep(5)
+                keyboard.press_and_release('ctrl + w')
 
 class aplicativo:
     def __init__(self):
@@ -43,7 +52,9 @@ class aplicativo:
 
         layout = [  
             [sg.Menu(menu_def)],
-            [sg.Text(size=(16,5))],
+            #[sg.Text(size=(16,5))],
+            [sg.Checkbox('Com imagem',key='img'),sg.Checkbox('Grupo',key='grp')],
+            [sg.Checkbox('Sem imagem',key='N/img')],
             [sg.Button('Enviar'), sg.Button('Sair'), sg.Button('Test')] 
             ]
 
@@ -129,14 +140,11 @@ class aplicativo:
             if event == 'Mensagem' :
                 aplicativo_window.close()
                 mensagem()
-
-            if event == 'Test':
-                with open("credenciais.json", encoding='utf-8') as meu_json:
-                        dado = json.load(meu_json)
-                info = dado['msg']   
                 
-
-                print(info)
+            if event == 'Enviar':
+                if values['img']:
+                    pass
+                    
 
         aplicativo_window.close()
 
