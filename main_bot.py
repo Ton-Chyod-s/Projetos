@@ -55,7 +55,7 @@ class aplicativo:
             #[sg.Text(size=(16,5))],
             [sg.Checkbox('Com imagem',key='img'),sg.Checkbox('Grupo',key='grp')],
             [sg.Checkbox('Sem imagem',key='N/img')],
-            [sg.Button('Enviar'), sg.Button('Sair'), sg.Button('Att Msg')] 
+            [sg.Button('Enviar'), sg.Button('Sair')] 
             ]
 
         # Create the Window
@@ -160,7 +160,7 @@ class aplicativo:
                     
                 elif values['N/img'] and values['grp']:
                     nav.mensagem_grupo()
-                    
+  
         aplicativo_window.close()
 
 if __name__ == '__main__':
