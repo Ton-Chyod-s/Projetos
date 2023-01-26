@@ -160,6 +160,9 @@ class aplicativo:
                     
                 elif values['N/img'] and values['grp']:
                     nav.mensagem_grupo()
+
+                else:
+                    nav.mensagem_texto()
   
         aplicativo_window.close()
 
