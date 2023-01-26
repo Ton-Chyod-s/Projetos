@@ -1,28 +1,42 @@
 import flet as ft
 
-
 def main(page: ft.Page):
-    def add_clicked(e):
-        tasks_view.controls.append(ft.Checkbox(label=new_task.value))
-        new_task.value = ""
-        view.update()
-
-    new_task = ft.TextField(hint_text="Whats needs to be done?", expand=True)
-    tasks_view = ft.Column()
-    view=ft.Column(
-        width=600,
-        controls=[
-            ft.Row(
-                controls=[
-                    new_task,
-                    ft.FloatingActionButton(icon=ft.icons.ADD, on_click=add_clicked),
+    page.add(
+        ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("First name")),
+                ft.DataColumn(ft.Text("Last name")),
+                ft.DataColumn(ft.Text("Age"), numeric=True),
                 ],
-            ),
-            tasks_view,
-        ],
+            rows=[
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text("John")),
+                        ft.DataCell(ft.Text("Smith")),
+                        ft.DataCell(ft.Text("43")),
+                    ],
+                ),
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text("Jack")),
+                        ft.DataCell(ft.Text("Brown")),
+                        ft.DataCell(ft.Text("19")),
+                    ],
+                ),
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text("Alice")),
+                        ft.DataCell(ft.Text("Wong")),
+                        ft.DataCell(ft.Text("25")),
+                    ],
+                ),
+            ],
+        ),
     )
 
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    page.add(view)
+    ft.ResponsiveRow([
+    ft.Column(col={"sm": 6}, controls=[ft.Text("Column 1")]),
+    ft.Column(col={"sm": 6}, controls=[ft.Text("Column 2")])
+])
 
 ft.app(target=main)
