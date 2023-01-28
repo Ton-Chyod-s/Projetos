@@ -24,7 +24,7 @@ class bot:
     def mensagem_imagem(self):
         while len(self.contato) >= 1:
             # Send a WhatsApp Message to a Contact 
-            pywhatkit.sendwhats_image(self.contato[0],self.imagem, "um teste ae", datetime.now().hour, datetime.now().minute + 1)
+            pywhatkit.sendwhats_image(self.contato[0],self.imagem, self.mensagem, datetime.now().hour, datetime.now().minute + 1)
             del self.contato[0]
             time.sleep(5)
             keyboard.press_and_release('ctrl + w')
@@ -32,7 +32,7 @@ class bot:
     def mensagem_texto(self):
         while len(self.contato) >= 1:
             # Send a WhatsApp Message to a Contaat 1:30 PM
-            pywhatkit.sendwhatmsg(self.contato[0], "um teste ae", datetime.now().hour, datetime.now().minute + 1)
+            pywhatkit.sendwhatmsg(self.contato[0], self.mensagem, datetime.now().hour, datetime.now().minute + 1)
             del self.contato[0]
             time.sleep(5)
             keyboard.press_and_release('ctrl + w')
@@ -40,7 +40,7 @@ class bot:
     def mensagem_grupo(self):
         while len(self.contato) >= 1:
             # Send a WhatsApp Message to a Contact at 1:30 PM
-            pywhatkit.sendwhatmsg_to_group(self.contato[0], "um teste ae", datetime.now().hour, datetime.now().minute + 1)
+            pywhatkit.sendwhatmsg_to_group(self.contato[0], self.mensagem, datetime.now().hour, datetime.now().minute + 1)
             del self.contato[0]
             time.sleep(5)
             keyboard.press_and_release('ctrl + w')
