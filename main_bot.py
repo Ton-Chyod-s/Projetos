@@ -6,7 +6,7 @@ from selenium.webdriver.support.expected_conditions import (element_to_be_clicka
 import time 
 import json
 
-contato = ['comprovantes','SHEIN']
+
 
 class bot:
     def __init__(self):
@@ -19,7 +19,7 @@ class bot:
          self.driver.maximize_window()
          self.wdw = WebDriverWait(self.driver, 1)
                   
-    def prog(self,mensagem):
+    def prog(self,mensagem,contato):
         for i in contato:
             self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]')))
             self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').clear()
@@ -94,7 +94,10 @@ class app:
                 whatsapp.site_whatsapp()
             
             if event == 'Login':
-                whatsapp.prog(values['mensagem'])
+                with open("contatos.json", encoding='utf-8') as meu_json:
+                        dado = json.load(meu_json)
+                cont = dado['Contato'] 
+                whatsapp.prog(values['mensagem'],cont)
             
             if event =='Contato':
                 window.close()
