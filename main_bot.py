@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 import PySimpleGUI as sg
 from selenium.webdriver.support.expected_conditions import (element_to_be_clickable)
 import time 
-
+import json
 
 contato = ['comprovantes','SHEIN']
 
@@ -43,8 +43,10 @@ class app:
     def __init__(self):
         selected_theme = 'Reddit'
         sg.theme(selected_theme)
+        menu_def = ['&Arquivo', ['&Contato']],
 
         self.layout_login = [
+            [sg.Menu(menu_def)],
             [sg.Button('Web',size=(5,1)), sg.Text('INFRA',justification='c',size=(9,1)),sg.Button('Login',size=(6,1))],
             [sg.Multiline(size=(25,3),key='mensagem')],
             ]
