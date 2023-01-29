@@ -51,6 +51,37 @@ class app:
 
         window = sg.Window('Tux-Netwin', icon='tux-natal.ico',layout=self.layout_login, keep_on_top=True, finalize = True,size=(250,75))
 
+        def contato():
+            layout = [
+                [sg.Text('Contato')],
+                [sg.Multiline(size=(16,5),key='numero')],
+                [sg.Button('Ok'), sg.Button('Voltar')] ]
+
+            # Create the Window
+            window = sg.Window('Bot Whatsapp', layout)
+
+            # Event Loop to process "events" and get the "values" of the inputs
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
+                    break
+
+                if event == 'Voltar':
+                    window.close()
+                    app()
+
+                if event == 'Ok':
+                    dados = {
+                            "Contato": values['numero']
+                        }
+                    with open("contatos.json", 'w') as file:
+                        json.dump(dados, file, indent=4)
+
+                    window.close()
+                    app()
+
+            window.close()
+            
         while True:
             event,values = window.read()
             if event == sg.WIN_CLOSED or event == 'Sair': # if user closes window or clicks cancel
