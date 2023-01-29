@@ -6,7 +6,7 @@ from selenium.webdriver.support.expected_conditions import (element_to_be_clicka
 import time 
 
 menssagem = 'teste bot'
-contato = ['amor','Grupo']
+contato = ['comprovantes','SHEIN']
 
 class bot:
     def __init__(self):
@@ -17,32 +17,24 @@ class bot:
          self.driver.get("https://web.whatsapp.com/")
          self.driver.maximize_window()
          self.wdw = WebDriverWait(self.driver, 1)
-         
-    def prog1 (self):
-        for i in contato:
-            try:
-                self.wdw.until(element_to_be_clickable(('xpath', f"//*[@title='{i}']")))
-                self.driver.find_element(By.XPATH,f"//*[@title='{i}']").click()
-                # mandar msg
-                self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p')))
-                self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p').send_keys(menssagem)
-                self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span').click()
-                time.sleep(1)
-            except:
-                print('nem encontrei esse grupo:\t',i)
-                
+                  
     def prog(self):
         for i in contato:
             self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]')))
+            self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').clear()
             self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').send_keys(i)
-            time.sleep(1)
-            self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="pane-side"]/div[1]/div/div/div[8]/div/div/div/div[2]/div[1]/div[1]/span')))
-            self.driver.find_element(By.XPATH,'//*[@id="pane-side"]/div[1]/div/div/div[8]/div/div/div/div[2]/div[1]/div[1]/span').click()
-            # mandar msg
-            self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p')))
-            self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p').send_keys(menssagem)
-            self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span').click()
-            time.sleep(1)
+            time.sleep(3)
+            
+            try:
+                self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="pane-side"]/div[1]/div/div/div[1]')))
+                self.driver.find_element(By.XPATH,'//*[@id="pane-side"]/div[1]/div/div/div[1]').click()
+                # mandar msg
+                self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p')))
+                self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p').send_keys(menssagem)
+                #self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span').click()
+                time.sleep(1)
+            except:
+                pass
         
 whatsapp = bot()
 
