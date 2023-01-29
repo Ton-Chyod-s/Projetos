@@ -5,12 +5,13 @@ import PySimpleGUI as sg
 from selenium.webdriver.support.expected_conditions import (element_to_be_clickable)
 import time 
 
-menssagem = 'teste bot'
+
 contato = ['comprovantes','SHEIN']
 
 class bot:
     def __init__(self):
         pass
+        
     def navegador(self):
         self.driver = Chrome()
     def site_whatsapp(self):
@@ -18,7 +19,7 @@ class bot:
          self.driver.maximize_window()
          self.wdw = WebDriverWait(self.driver, 1)
                   
-    def prog(self):
+    def prog(self,mensagem):
         for i in contato:
             self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]')))
             self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').clear()
@@ -30,7 +31,7 @@ class bot:
                 self.driver.find_element(By.XPATH,'//*[@id="pane-side"]/div[1]/div/div/div[1]').click()
                 # mandar msg
                 self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p')))
-                self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p').send_keys(menssagem)
+                self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[1]/p').send_keys(mensagem)
                 #self.driver.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span').click()
                 time.sleep(1)
             except:
@@ -45,7 +46,7 @@ class app:
 
         self.layout_login = [
             [sg.Button('Web',size=(5,1)), sg.Text('INFRA',justification='c',size=(9,1)),sg.Button('Login',size=(6,1))],
-            [sg.Combo(['Firefox','Chrome','Internet Explorer','Edge']),sg.Checkbox('V-tal',key='home')],
+            [sg.Multiline(size=(25,3),key='mensagem')],
             ]
 
         window = sg.Window('Tux-Netwin', icon='tux-natal.ico',layout=self.layout_login, keep_on_top=True, finalize = True,size=(250,75))
@@ -60,7 +61,7 @@ class app:
                 whatsapp.site_whatsapp()
             
             if event == 'Login':
-                whatsapp.prog()
+                whatsapp.prog(values['mensagem'])
     
         window.close()
 
