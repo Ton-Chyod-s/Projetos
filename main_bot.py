@@ -93,8 +93,15 @@ class app:
             
             if event == 'Login':
                 whatsapp.prog(values['mensagem'])
+            
+            if event =='Contato':
+                window.close()
+                contato()
     
         window.close()
 
 if __name__ == "__main__":
     app()
+    
+    
+    
