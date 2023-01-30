@@ -18,7 +18,7 @@ def endereco(procurar = True):
         
 class bot:
     def __init__(self, contato, mensagem):
-        self.contato = contato
+        self.contato = contato.split(",")
         self.mensagem = mensagem
 
     def mensagem_imagem(self):
