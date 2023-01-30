@@ -20,7 +20,8 @@ class bot:
          self.wdw = WebDriverWait(self.driver, 1)
                   
     def prog(self,mensagem,contato):
-        for i in contato:
+        list = contato.split(",")
+        for i in list:
             self.wdw.until(element_to_be_clickable(('xpath', '//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]')))
             self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').clear()
             self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div/div[2]/div/div[2]').send_keys(i)
@@ -96,7 +97,7 @@ class app:
             if event == 'Login':
                 with open("contatos.json", encoding='utf-8') as meu_json:
                         dado = json.load(meu_json)
-                cont = dado['Contato'] 
+                cont = dado['Contato']
                 whatsapp.prog(values['mensagem'],cont)
             
             if event =='Contato':
