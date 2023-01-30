@@ -44,7 +44,7 @@ class app:
     def __init__(self):
         selected_theme = 'Reddit'
         sg.theme(selected_theme)
-        menu_def = ['&Arquivo', ['&Contato']],
+        menu_def = ['&Arquivo', ['&Contato','&Mensagem']],
 
         self.layout_login = [
             [sg.Menu(menu_def)],
@@ -84,7 +84,38 @@ class app:
                     app()
 
             window.close()
-            
+        
+        def mensagem():
+            layout = [
+                [sg.Text('Mensagem')],
+                [sg.Multiline(size=(16,5),key='mensagem')],
+                [sg.Button('Ok'), sg.Button('Voltar')] ]
+
+            # Create the Window
+            window = sg.Window('Bot Whatsapp', layout)
+
+            # Event Loop to process "events" and get the "values" of the inputs
+            while True:
+                event, values = window.read()
+                if event == sg.WIN_CLOSED:   # if user closes window or clicks cancel
+                    break
+
+                if event == 'Voltar':
+                    window.close()
+                    app()
+
+                if event == 'Ok':
+                    dados = {
+                            "msg": values['mensagem']
+                        }
+                    with open("mensagem.json", 'w') as file:
+                        json.dump(dados, file, indent=4)
+
+                    window.close()
+                    app()
+
+            window.close()
+               
         while True:
             event,values = window.read()
             if event == sg.WIN_CLOSED or event == 'Sair': # if user closes window or clicks cancel
@@ -98,11 +129,21 @@ class app:
                 with open("contatos.json", encoding='utf-8') as meu_json:
                         dado = json.load(meu_json)
                 cont = dado['Contato']
-                whatsapp.prog(values['mensagem'],cont)
+                
+                with open("mensagem.json", encoding='utf-8') as meu_json:
+                        dado1 = json.load(meu_json)
+                        
+                mesag = dado1['msg']
+                
+                whatsapp.prog(mesag,cont)
             
             if event =='Contato':
                 window.close()
                 contato()
+            
+            if event =='Mensagem':
+                window.close()
+                mensagem()
     
         window.close()
 
