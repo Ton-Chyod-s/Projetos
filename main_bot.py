@@ -32,7 +32,7 @@ class bot:
     def mensagem_texto(self):
         while len(self.contato) >= 1:
             # Send a WhatsApp Message to a Contaat 1:30 PM
-            pywhatkit.sendwhatmsg(self.contato[0], self.mensagem, datetime.now().hour, datetime.now().minute + 1)
+            pywhatkit.sendwhatmsg(self.contato[0], self.mensagem, datetime.now().hour, datetime.now().minute + 2)
             del self.contato[0]
             time.sleep(5)
             keyboard.press_and_release('ctrl + w')
