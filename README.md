@@ -1,1 +1,1 @@
-Pasta criada para deixar alguns dos projetos relevantes.
+varios click em um loop e em seguida utilizando as coordenadas
