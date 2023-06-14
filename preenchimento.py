@@ -1,6 +1,5 @@
-from odf import text, teletype
-from odf.opendocument import load
 import os
+import ezodf
 
 for i in range(2):
     def pasta(caminho):
@@ -12,14 +11,14 @@ for i in range(2):
     pasta(os.path.abspath(f'acm{i}'))                                
                                     
     # Carregar o arquivo existente
-    doc = load(os.path.abspath('termo aditivo ACS p ACM.odt'))
+    doc = ezodf.opendoc(os.path.abspath('termo aditivo ACS p ACM.odt'))
 
     # Acessar o conteúdo do documento
-    content = doc.text
+    content = doc.body
 
     # Editar o conteúdo
-    paragraphs = content.getElementsByType(text.P)
-    paragraphs[0].childNodes[0].nodeValue = 'Este é um exemplo de edição de ODT usando Python.'
+    paragraphs = [p for p in content if isinstance(p, ezodf.Paragraph)]
+    paragraphs[0].text = 'Este é um exemplo de edição de ODT usando Python.'
 
     # Salvar as alterações
-    doc.save(os.path.abspath(f'acm{i}//termo aditivo ACS p ACM.odt'))
+    doc.save(os.path.abspath(f'acm{i}//termo aditivo ACS p ACM.odt', pretty=True))
