@@ -1,14 +1,16 @@
 import os
 from docx import Document
+from tqdm import tqdm
 from datetime import datetime
 from docx.shared import Pt
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT, WD_TAB_ALIGNMENT
 from openpyxl import load_workbook
+import re
 
 # Obter a data atual
 data_atual = datetime.now().strftime("%d/%m/%Y")
 
-for i in range(2,3):
+for i in tqdm(range(2,122), desc ="Carregando..." ):
     def pasta(caminho):
         pasta = caminho
         #verificar se a pasta existe se não existir ele ira criar
@@ -25,6 +27,13 @@ for i in range(2,3):
     matricula = sheet.cell(row=i, column=1).value
     nome = sheet.cell(row=i, column=2).value
     cpf = sheet.cell(row=i, column=3).value
+    lotacao = sheet.cell(row=i, column=6).value
+    # Remover os números da lotação
+    lotacao_sem_numeros = re.sub(r'\d+', '', lotacao)
+
+    # Remover o primeiro traço (-)
+    lotacao_sem_traco = lotacao_sem_numeros.split('-', 1)[-1].strip()
+       
     data_troca = sheet.cell(row=i, column=8).value
     rg = sheet.cell(row=i, column=9).value   
     orgao_emisor = sheet.cell(row=i, column=10).value                          
@@ -37,7 +46,7 @@ for i in range(2,3):
         data_emissao = data_emissao.date().strftime('%d/%m/%Y')
         
     #criar pasta com nome da pessoa
-    pasta(os.path.abspath(f'{nome} {i}'))
+    pasta(os.path.abspath(f'pessoas'))
     
     # Carregar o arquivo existente
     doc = Document(os.path.abspath('termo aditivo ACS p ACM.docx'))
@@ -82,4 +91,4 @@ for i in range(2,3):
     paragraphs[20].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
     
     # Salvar as alterações
-    doc.save(os.path.abspath(f'{nome} {i}//termo aditivo ACS p ACM.docx'))
+    doc.save(os.path.abspath(f'pessoas//{lotacao_sem_traco} - {nome} {i}.docx'))
