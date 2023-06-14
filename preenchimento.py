@@ -99,7 +99,7 @@ def preencher_word():
         window['progress'].update(i + 1)
         window.refresh()
     
-    sg.popup('Concluído!', title='Informação')
+    sg.popup('Concluído!', title='Informação',keep_on_top=True)
         
 selected_theme = 'Reddit'
 sg.theme(selected_theme)        
