@@ -1,5 +1,5 @@
 import os
-import ezodf
+from docx import Document
 
 for i in range(2):
     def pasta(caminho):
@@ -11,14 +11,13 @@ for i in range(2):
     pasta(os.path.abspath(f'acm{i}'))                                
                                     
     # Carregar o arquivo existente
-    doc = ezodf.opendoc(os.path.abspath('termo aditivo ACS p ACM.odt'))
+    doc = Document(os.path.abspath('termo aditivo ACS p ACM.docx'))
 
     # Acessar o conteúdo do documento
-    content = doc.body
+    paragraphs = doc.paragraphs
 
     # Editar o conteúdo
-    paragraphs = [p for p in content if isinstance(p, ezodf.Paragraph)]
-    paragraphs[0].text = 'Este é um exemplo de edição de ODT usando Python.'
+    paragraphs[3].text = 'Eu, (nome ou nome social), CPF ______________, carteira de identificação nº _________, emitida em _________, órgão emissor __________, aprovado e classificado em Processo Seletivo Simplificado, para os trabalhos do CENSO DEMOGRÁFICO 2022, para exercer a função de 	AGENTE CENSITÁRIO SUPERVISOR, sob a matrícula ___________.'
 
     # Salvar as alterações
-    doc.save(os.path.abspath(f'acm{i}//termo aditivo ACS p ACM.odt', pretty=True))
+    doc.save(os.path.abspath(f'acm{i}//termo aditivo ACS p ACM.docx'))
