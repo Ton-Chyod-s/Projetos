@@ -25,16 +25,18 @@ def preencher_word():
         # Selecionar a planilha desejada (por nome ou índice)
         sheet = workbook.worksheets[0]
         
-        #conteudo da celula
-        matricula = sheet.cell(row=i, column=1).value
-        nome = sheet.cell(row=i, column=2).value
-        cpf = sheet.cell(row=i, column=3).value
-        lotacao = sheet.cell(row=i, column=6).value
-        # Remover os números da lotação
-        lotacao_sem_numeros = re.sub(r'\d+', '', lotacao)
-
-        # Remover o primeiro traço (-)
-        lotacao_sem_traco = lotacao_sem_numeros.split('-', 1)[-1].strip()
+        try:
+            #conteudo da celula
+            matricula = sheet.cell(row=i, column=1).value
+            nome = sheet.cell(row=i, column=2).value
+            cpf = sheet.cell(row=i, column=3).value
+            lotacao = sheet.cell(row=i, column=6).value
+            # Remover os números da lotação
+            lotacao_sem_numeros = re.sub(r'\d+', '', lotacao)
+            # Remover o primeiro traço (-)
+            lotacao_sem_traco = lotacao_sem_numeros.split('-', 1)[-1].strip()
+        except:
+            break
         
         data_troca = sheet.cell(row=i, column=8).value
         rg = sheet.cell(row=i, column=9).value   
