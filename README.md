@@ -1,3 +1,5 @@
+# Projetos
+
 O programa captura as coordenadas do mouse quando o botão esquerdo é pressionado e as salva em uma lista. Em seguida, o programa utiliza as coordenadas armazenadas para realizar ações específicas na tela.
 
 Importação das bibliotecas necessárias:
