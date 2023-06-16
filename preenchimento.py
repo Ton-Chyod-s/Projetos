@@ -70,6 +70,9 @@ def preencher_word():
         paragrafo_edicao = f'Declaro, para os devidos fins, e por livre e espontânea vontade, que aceito exercer a função de AGENTE CENSITÁRIO MUNICIPAL – ACM a partir do dia {data_troca}, tendo meu salário e minhas atribuições alterados conforme detalhamento dessa função descrito no referido Edital do Processo Seletivo Simplificado em questão.'
         paragraphs[6].text = paragrafo_edicao
 
+        paragrafo_edicao = f'Data: {data_atual}'
+        paragraphs[10].text = paragrafo_edicao
+        
         # Aplicar formatação para Arial 12 em todos os parágrafos
         for paragraph in paragraphs:
             for run in paragraph.runs:
@@ -91,9 +94,9 @@ def preencher_word():
             run.font.name = font_name
             run.font.size = Pt(11)
         
-        # Centralizar parágrafos 21 e 22
+        '''# Centralizar parágrafos 21 e 22
         paragraphs[20].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        
+        '''
         # Salvar as alterações
         doc.save(os.path.abspath(f'pessoas//{lotacao_sem_traco} - {nome} {i}.docx'))
         
