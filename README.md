@@ -1,3 +1,5 @@
+# Projetos
+
 Uma estimativa para controlar sua renda, investimentos, reserva de emergência e gastos disponíveis sem comprometer sua estabilidade financeira é fundamental para uma boa gestão financeira.
 
 Este programa recebe um argumento que representa o valor do salário mensal. Em seguida, define um dicionário chamado "porcentagem" que contém as porcentagens alocadas para diferentes categorias financeiras.
