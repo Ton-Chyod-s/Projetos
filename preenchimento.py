@@ -4,6 +4,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import PySimpleGUI as sg
+
 
 options = Options()
 #options.add_argument('--headless')
@@ -32,20 +34,38 @@ processo_xpath = f"//button[contains(text(), '{processo_text}')]"
 wdw.until(EC.element_to_be_clickable((By.XPATH, processo_xpath)))
 driver.find_element(By.XPATH, processo_xpath).click()
 
+resultados = []
 # Percorrer os elementos dentro do card
-for i in range(1, 5):
-    xpath_elemento = f"//*[@id='collapse-1']/div/div[{i}]"
+for tabela in range(1, 5):
+    xpath_elemento = f"//*[@id='collapse-1']/div/div[{tabela}]"
     try:
         wdw.until(EC.element_to_be_clickable((By.XPATH, xpath_elemento)))
         texto = driver.find_element(By.XPATH, xpath_elemento).text
         link_elemento = driver.find_element(By.XPATH, "//*[@class='arquivo-processo-seletivo']//a")
         link = link_elemento.get_attribute("href")
-        print(texto,f'\n', link)
+        
+        # Adicionar os resultados à lista
+        resultados.append((texto , link))
+        
     except:
         print('Não há mais elementos')
         break
+    
+#fechar driver
+driver.quit()
 
-
+if len(resultados) > 0:
+    primeiro_elemento = resultados[0]
+    texto_elemento1, link_elemento1 = primeiro_elemento
+    try:
+        segundo_elemento = resultados[1]
+        texto_elemento2, link_elemento2 = primeiro_elemento
+        sg.popup('', texto_elemento1, link_elemento1, keep_on_top=True)
+    except:
+        pass
+    sg.popup('', texto_elemento1, link_elemento1, keep_on_top=True)
+else:
+    print('A lista de resultados está vazia.')
 
 
     
