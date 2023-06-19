@@ -1,0 +1,45 @@
+1687171039691	geckodriver	INFO	Listening on 127.0.0.1:53204
+1687171042776	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "53205" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofileQ8QrLf"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1687171043440	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1687171043446	Marionette	INFO	Listening on port 53212
+Read port: 53212
+WebDriver BiDi listening on ws://127.0.0.1:53205
+1687171043799	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofileQ8QrLf\\search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:53205/devtools/browser/de19b212-bfe6-4aa3-b74c-351f48ad12de
+1687172250422	geckodriver	INFO	Listening on 127.0.0.1:55048
+1687172253478	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "55049" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofilevActHy"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1687172254128	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1687172254137	Marionette	INFO	Listening on port 55063
+Read port: 55063
+WebDriver BiDi listening on ws://127.0.0.1:55049
+1687172254416	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofilevActHy\\search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:55049/devtools/browser/cd1a38bb-f6d5-4325-b974-53b66897da4b
+1687172404095	Marionette	INFO	Stopped listening on port 55063
+Dynamically enable window occlusion 1
+console.error: (new Error("Data is not ready.", "resource://gre/modules/JSONFile.sys.mjs", 184))
+1687172411725	geckodriver	INFO	Listening on 127.0.0.1:55389
+1687172414790	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "55390" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofilewk80k3"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1687172415405	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1687172415414	Marionette	INFO	Listening on port 55407
+Read port: 55407
+WebDriver BiDi listening on ws://127.0.0.1:55390
+1687172415727	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Hix_x\\AppData\\Local\\Temp\\rust_mozprofilewk80k3\\search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:55390/devtools/browser/bd90a9f0-b9d6-46c1-9e11-a1e3fd8703ff
