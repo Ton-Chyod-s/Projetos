@@ -11,15 +11,14 @@ import webbrowser
 selected_theme = 'Reddit'
 sg.theme(selected_theme)
 options = Options()
+options.add_argument("--headless")  # Executar o navegador em modo headless (sem exibição)
 
-# Definir um diretório diferente para o perfil do Chrome
-options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")
+'''# Definir um diretório diferente para o perfil do Chrome
+options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")'''
 
 # Verificar se o ChromeDriver está instalado corretamente
-try:
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-except Exception as e:
-    print(f"Erro ao instalar o ChromeDriver: {e}")
+
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 wdw = WebDriverWait(driver, 1)
 
@@ -28,7 +27,7 @@ url = "https://fapec.org/processo-seletivo/"
 driver.get(url)
 
 # Executar um script JavaScript para ocultar o elemento de notificação de cookies
-driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
+#driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
 
 # Encontrar o botão do processo desejado
 processo_text = "Processo Seletivo Simplificado 031/2023 – contratação temporária – Inscrições abertas 14/06/2023 à 20/06/2023 até às 18:00"
