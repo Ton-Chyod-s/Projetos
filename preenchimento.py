@@ -5,10 +5,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import PySimpleGUI as sg
-
-
+from time import sleep
+selected_theme = 'Reddit'
+sg.theme(selected_theme)
 options = Options()
-#options.add_argument('--headless')
+
 
 # Definir um diretório diferente para o perfil do Chrome
 options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")
@@ -29,7 +30,7 @@ driver.get(url)
 driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
 
 # Encontrar o botão do processo desejado
-processo_text = "Processo Seletivo Simplificado 031/2023 – contratação temporária – Inscrições abertas 14/06/2023 à 16/06/2023 até às 23:59"
+processo_text = "Processo Seletivo Simplificado 030/2023 – Analista – Inscrições abertas 07/06/2023 à 15/06/2023 até às 12:00"
 processo_xpath = f"//button[contains(text(), '{processo_text}')]"
 wdw.until(EC.element_to_be_clickable((By.XPATH, processo_xpath)))
 driver.find_element(By.XPATH, processo_xpath).click()
@@ -37,7 +38,7 @@ driver.find_element(By.XPATH, processo_xpath).click()
 resultados = []
 # Percorrer os elementos dentro do card
 for tabela in range(1, 5):
-    xpath_elemento = f"//*[@id='collapse-1']/div/div[{tabela}]"
+    xpath_elemento = f"//*[@id='collapse-2']/div/div[{tabela}]"
     try:
         wdw.until(EC.element_to_be_clickable((By.XPATH, xpath_elemento)))
         texto = driver.find_element(By.XPATH, xpath_elemento).text
@@ -45,27 +46,26 @@ for tabela in range(1, 5):
         link = link_elemento.get_attribute("href")
         
         # Adicionar os resultados à lista
-        resultados.append((texto , link))
-        
+        resultados.append((texto, link))
+         
     except:
         print('Não há mais elementos')
         break
     
-#fechar driver
+sleep(1)
+# Criar uma lista de strings com os elementos separados
+elementos_separados = []
+for tupla in resultados:
+    for elemento in tupla:
+        elementos_separados.append(elemento)
+        
+# Criar uma janela de pop-up para exibir os resultados
+sg.popup('\n\n'.join(elementos_separados))
+     
+# Fechar driver
 driver.quit()
 
-if len(resultados) > 0:
-    primeiro_elemento = resultados[0]
-    texto_elemento1, link_elemento1 = primeiro_elemento
-    try:
-        segundo_elemento = resultados[1]
-        texto_elemento2, link_elemento2 = primeiro_elemento
-        sg.popup('', texto_elemento1, link_elemento1, keep_on_top=True)
-    except:
-        pass
-    sg.popup('', texto_elemento1, link_elemento1, keep_on_top=True)
-else:
-    print('A lista de resultados está vazia.')
+
 
 
     
