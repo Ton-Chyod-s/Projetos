@@ -10,7 +10,6 @@ selected_theme = 'Reddit'
 sg.theme(selected_theme)
 options = Options()
 
-
 # Definir um diretório diferente para o perfil do Chrome
 options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")
 
@@ -30,40 +29,66 @@ driver.get(url)
 driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
 
 # Encontrar o botão do processo desejado
-processo_text = "Processo Seletivo Simplificado 030/2023 – Analista – Inscrições abertas 07/06/2023 à 15/06/2023 até às 12:00"
+processo_text = "Processo Seletivo Simplificado – Vagas para Analista de Projetos; Inscrições de 18 a 24/05/2023 até às 23h59min."
 processo_xpath = f"//button[contains(text(), '{processo_text}')]"
 wdw.until(EC.element_to_be_clickable((By.XPATH, processo_xpath)))
 driver.find_element(By.XPATH, processo_xpath).click()
 
-resultados = []
-# Percorrer os elementos dentro do card
-for tabela in range(1, 5):
-    xpath_elemento = f"//*[@id='collapse-2']/div/div[{tabela}]"
+for i in range(1,10):
+    resultados = []
+    # Percorrer os elementos dentro do card
+    for tabela in range(1, 5):
+        xpath_elemento = f"//*[@id='collapse-{i}']/div/div[{tabela}]"
+        try:
+            wdw.until(EC.element_to_be_clickable((By.XPATH, xpath_elemento)))
+            texto = driver.find_element(By.XPATH, xpath_elemento).text
+            
+            # Modificar o seletor XPath para obter o link específico dentro de cada elemento
+            link_elemento = driver.find_element(By.XPATH, f"{xpath_elemento} //*[@class='arquivo-processo-seletivo']//a")
+            link = link_elemento.get_attribute("href")
+            
+            # Adicionar os resultados à lista
+            resultados.append((texto, link))
+            
+        except:
+            break
+  
+    sleep(1)
+    # Criar uma lista de strings com os elementos separados
+    elementos_separados = []
+    for tupla in resultados:
+        for elemento in tupla:
+            elementos_separados.append(elemento)
+
+    # Criar o layout para o pop-up
+    layout = [[sg.Text(text, enable_events=True, key=f"-LINK-{i}")] for i, text in enumerate(elementos_separados)]
+
+    # Criar a janela de pop-up
+    janela_popup = sg.Window("Resultados", layout,keep_on_top=True)
+
     try:
-        wdw.until(EC.element_to_be_clickable((By.XPATH, xpath_elemento)))
-        texto = driver.find_element(By.XPATH, xpath_elemento).text
-        link_elemento = driver.find_element(By.XPATH, "//*[@class='arquivo-processo-seletivo']//a")
-        link = link_elemento.get_attribute("href")
-        
-        # Adicionar os resultados à lista
-        resultados.append((texto, link))
-         
+        # Loop de eventos da janela de pop-up
+        while True:
+            evento, valores = janela_popup.read()
+            if evento == sg.WINDOW_CLOSED:
+                break
+            elif evento.startswith("-LINK-"):
+                # Obter o índice do link clicado
+                indice = int(evento.split("-")[-1])
+                if 0 <= indice < len(resultados):
+                    if len(resultados[indice]) >= 2:
+                        # Acessar diretamente o link na posição indice
+                        link = resultados[indice][1]
+                        if link:
+                            # Abrir o link no navegador padrão
+                            import webbrowser
+                            webbrowser.open(link)
     except:
-        print('Não há mais elementos')
-        break
-    
-sleep(1)
-# Criar uma lista de strings com os elementos separados
-elementos_separados = []
-for tupla in resultados:
-    for elemento in tupla:
-        elementos_separados.append(elemento)
-        
-# Criar uma janela de pop-up para exibir os resultados
-sg.popup('\n\n'.join(elementos_separados))
-     
-# Fechar driver
-driver.quit()
+        pass
+
+
+    # Fechar a janela de pop-up
+    janela_popup.close()
 
 
 
