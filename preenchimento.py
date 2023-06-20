@@ -11,10 +11,10 @@ import webbrowser
 selected_theme = 'Reddit'
 sg.theme(selected_theme)
 options = Options()
-options.add_argument("--headless")  # Executar o navegador em modo headless (sem exibição)
+#options.add_argument("--headless")  # Executar o navegador em modo headless (sem exibição)
 
-'''# Definir um diretório diferente para o perfil do Chrome
-options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")'''
+# Definir um diretório diferente para o perfil do Chrome
+options.add_argument("user-data-dir=/caminho/do/diretorio/selenium")
 
 # Verificar se o ChromeDriver está instalado corretamente
 
@@ -30,8 +30,9 @@ driver.get(url)
 #driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
 
 # Encontrar o botão do processo desejado
-processo_text = "Processo Seletivo Simplificado 031/2023 – contratação temporária – Inscrições abertas 14/06/2023 à 20/06/2023 até às 18:00"
+processo_text = "Processo Seletivo Simplificado 031/2023 – Contratação Temporária – Inscrições abertas 14/06/2023 à 20/06/2023 até às 18:00"
 processo_xpath = f"//button[contains(text(), '{processo_text}')]"
+sleep(2)
 wdw.until(EC.element_to_be_clickable((By.XPATH, processo_xpath)))
 driver.find_element(By.XPATH, processo_xpath).click()
 
