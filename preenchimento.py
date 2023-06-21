@@ -27,12 +27,12 @@ url = "https://fapec.org/processo-seletivo/"
 driver.get(url)
 
 # Executar um script JavaScript para ocultar o elemento de notificação de cookies
-#driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
+driver.execute_script("document.getElementsByClassName('cookie-notice-container')[0].style.display = 'none';")
 
 # Encontrar o botão do processo desejado
 processo_text = "Processo Seletivo Simplificado 031/2023 – Contratação Temporária – Inscrições abertas 14/06/2023 à 20/06/2023 até às 18:00"
 processo_xpath = f"//button[contains(text(), '{processo_text}')]"
-sleep(2)
+sleep(.5)
 wdw.until(EC.element_to_be_clickable((By.XPATH, processo_xpath)))
 driver.find_element(By.XPATH, processo_xpath).click()
 
